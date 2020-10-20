@@ -1,0 +1,35 @@
+﻿<Window x:Class="batallaNavalGrafico.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:batallaNavalGrafico"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="32">BATALLA NAVAL - AEROMARINE</Label>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <Label Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right">Nombre del JUGADOR A:</Label>
+            <TextBox Name="tbNombreA" Grid.Row="0" Grid.Column="1" Height="30" Width="100" HorizontalAlignment="Left" VerticalContentAlignment="Center"></TextBox>
+            
+            <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right">Nombre del JUGADOR B</Label>
+            <TextBox Name="tbNombreB" Grid.Row="1" Grid.Column="1" Height="30" Width="100" HorizontalAlignment="Left" VerticalContentAlignment="Center"></TextBox>
+        </Grid>
+        <Button Name="btComenzar" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="auto" Height="30" Click="empezarJuego">Comenzar partida</Button>
+        
+    </Grid>
+</Window>
