@@ -10,51 +10,26 @@ namespace batallaNavalGrafico
     public class Jugador
     {
 
-        const int TAM_TABLERO = 10;
-        const int NUM_BARCOS = 9;
-
         private String _nombre;
         private Tablero _tablero;
+
+        private Tablero _oculto;
+
         private Jugador _rival;
         private List<Barco> _barcos;
         private int _vida;
+
 
         public Jugador(String nombre)
         {
             this._nombre = nombre;
             this._rival = null;
-            this._tablero = new Tablero(TAM_TABLERO, this);
-            this._barcos = new List<Barco>(NUM_BARCOS);
+            this._tablero = new Tablero(this);
+            this._oculto = new Tablero(this);
+            this._barcos = new List<Barco>();
             this._vida = 0;
 
-            for (int i = 0; i < NUM_BARCOS; i++)
-            {
-                if (i == 0)
-                {
-                    this._barcos.Add(new Barco(Barco.Tipo.PORTAAVIONES));
-                    _vida += this._barcos[i].espacio;
-                }
-                else if (i > 0 && i < 3)
-                {
-                    this._barcos.Add(new Barco(Barco.Tipo.SUBMARINO));
-                    _vida += this._barcos[i].espacio;
-                }
-                else if (i == 3)
-                {
-                    this._barcos.Add(new Barco(Barco.Tipo.ACORAZADO));
-                    _vida += this._barcos[i].espacio;
-                }
-                else if (i > 3 && i <= 6)
-                {
-                    this._barcos.Add(new Barco(Barco.Tipo.DESTRUCTOR));
-                    _vida += this._barcos[i].espacio;
-                }
-                else
-                {
-                    this._barcos.Add(new Barco(Barco.Tipo.FRAGATA));
-                    _vida += this._barcos[i].espacio;
-                }
-            }
+            this.generarBarcos();
 
         }
 
@@ -68,6 +43,12 @@ namespace batallaNavalGrafico
         {
             get => _tablero;
             set => _tablero = value;
+        }
+
+        public Tablero oculto
+        {
+            get => _oculto;
+            set => _oculto = value;
         }
 
         public Jugador rival
@@ -88,49 +69,42 @@ namespace batallaNavalGrafico
             set => _barcos = value;
         }
 
-        
-
-        /*public void dispara()
+        private void generarBarcos()
         {
 
-            int fila;
-            int columna;
-            bool aux = true;
-
-            Console.WriteLine("Turno de " + this.nombre);
-
-            do
+            for(int i = 0; i < Principal.NUM_PORTAVIONES; i++)
             {
-
-                if (!aux)
-                    Console.WriteLine("Posición no válida");
-
-                Console.WriteLine("Fila:");
-                fila = Convert.ToInt32(Console.ReadLine());
-                Console.WriteLine("Columna");
-                columna = Convert.ToInt32(Console.ReadLine());
-
-                aux = fila > 0 && fila < TAM_TABLERO && columna > 0 && columna < TAM_TABLERO;
-
-            } while (!aux);
-
-
-
-            if (rival.tablero.casillas[fila][columna].contenido == "VAC")
-            {
-                rival.tablero.casillas[fila][columna].contenido = "AGU";
-            }
-            else if (rival.tablero.casillas[fila][columna].contenido == "AGU")
-            {
-                Console.WriteLine("No se puede volver a disparar a esa casilla");
-            }
-            else
-            {
-                rival.tablero.casillas[fila][columna].contenido = "HER";
-                --rival.vida;
+                this._barcos.Add(new Barco(Barco.Tipo.PORTAVIONES));
+                _vida += this._barcos[i].espacio;
             }
 
-        }*/
+            for (int i = 0; i < Principal.NUM_SUBMARINOS; i++)
+            {
+                this._barcos.Add(new Barco(Barco.Tipo.SUBMARINO));
+                _vida += this._barcos[i].espacio;
+            }
+
+            for (int i = 0; i < Principal.NUM_ACORAZADOS; i++)
+            {
+                this._barcos.Add(new Barco(Barco.Tipo.ACORAZADO));
+                _vida += this._barcos[i].espacio;
+            }
+
+            for (int i = 0; i < Principal.NUM_DESTRUCTORES; i++)
+            {
+                this._barcos.Add(new Barco(Barco.Tipo.DESTRUCTOR));
+                _vida += this._barcos[i].espacio;
+            }
+
+            for (int i = 0; i < Principal.NUM_FRAGATA; i++)
+            {
+                this._barcos.Add(new Barco(Barco.Tipo.FRAGATA));
+                _vida += this._barcos[i].espacio;
+            }
+
+            
+        }
+
 
     }
 }

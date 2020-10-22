@@ -15,9 +15,7 @@ using System.Windows.Shapes;
 
 namespace batallaNavalGrafico
 {
-    /// <summary>
-    /// Lógica de interacción para MainWindow.xaml
-    /// </summary>
+    
     public partial class MainWindow : Window
     {
 
@@ -37,18 +35,12 @@ namespace batallaNavalGrafico
                 MessageBox.Show("Introduce el nombre del Jugador B");
             else
             {
-
                 menu = new Principal(tbNombreA.Text, tbNombreB.Text);
+                this.Hide();
                 menu.colocar();
+                while (!menu.jugar());
                 this.Close();
-                //menu.colocar(jugadorB);
-
-                //Pantalla de juego con dos tableros
-
-
             }
-
-
         }
     }
 }

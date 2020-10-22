@@ -15,68 +15,56 @@ using System.Windows.Shapes;
 
 namespace batallaNavalGrafico
 {
-    /// <summary>
-    /// Lógica de interacción para Window1.xaml
-    /// </summary>
+    
     public partial class ColocarBarcos : Window
     {
 
-        const int TAM_TABLERO = 10;
 
         List<List<Casilla>> botones;
-        BindingList<Barco> listaBarcos;
+        BindingList<Barco> _listaBarcos;
 
-        private void crearTablero(int tam, List<List<Casilla>> casillas)
-        {
-
-            casillas = new List<List<Casilla>>(tam);
-            for (int i = 0; i < tam; i++)
-                casillas.Add(new List<Casilla>(tam));
-
-            for(int i = 0; i < tam; i++)
-                for (int j = 0; j < tam; j++)
-                {
-                    Casilla aux = new Casilla(i, j);
-                    aux.Click += new RoutedEventHandler(pulsarCasilla);
-                    casillas[i].Add(aux);
-                }
-
-            botones = casillas;
-           
-        }
-
-        private void definirBarcos(List<Barco> barcos)
-        {
-            listaBarcos = new BindingList<Barco>(barcos);            
-
-        }
-
-        public ColocarBarcos(int n, List<List<Casilla>> casillas, List<Barco> barcos)
+        public ColocarBarcos(String nombre, List<List<Casilla>> casillas, List<Barco> barcos)
         {
             InitializeComponent();
-            crearTablero(n, casillas);
-            definirBarcos(barcos);
+            crearTablero(casillas);
 
+            this._listaBarcos = new BindingList<Barco>(barcos);
+            listBox1.ItemsSource = _listaBarcos;
+
+
+            tituloVentana.Content = "Coloca las casillas "+nombre;
             lst.ItemsSource = botones;
-            listBox1.ItemsSource = listaBarcos;
 
+
+        }
+
+        private void crearTablero(List<List<Casilla>> casillas)
+        {
+
+            botones = casillas;
+
+            for (int i = 0; i < Principal.TAM_TABLERO; i++)
+                for (int j = 0; j < Principal.TAM_TABLERO; j++)
+                {
+                    botones[i][j].Click += new RoutedEventHandler(pulsarCasilla);
+                }
 
         }
 
         private bool posibleColocar(Barco b, Casilla c, int fila, int columna)
         {
-            if(c.Background != Brushes.LightBlue)
+            if(c.Background != Brushes.Gray)
             {
                 return false;
             }
 
             //POSICION VERTICAL SOLO
-            if (fila + b.espacio > TAM_TABLERO)
+            if (fila + b.espacio > Principal.TAM_TABLERO)
                 return false;
             else
             {
                 for (int i = fila; i < fila + b.espacio; i++)
-                    if (botones[i][columna].Background != Brushes.LightBlue)
+                    if (botones[i][columna].Background != Brushes.Gray)
                         return false;
 
                 for (int i = fila; i < fila + b.espacio; i++)
@@ -111,9 +99,8 @@ namespace batallaNavalGrafico
 
                 if(posibleColocar((Barco)listBox1.SelectedItem, (Casilla)sender, ((Casilla)sender).fila,((Casilla)sender).columna))
                 {
-                    MessageBox.Show("Barco colocado");
-                    listaBarcos.Remove((Barco)listBox1.SelectedItem);
-                    if (listaBarcos.Count == 0)
+                    _listaBarcos.Remove((Barco)listBox1.SelectedItem);
+                    if (_listaBarcos.Count == 0)
                         this.Close();
                 }
                 else

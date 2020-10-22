@@ -12,20 +12,21 @@ namespace batallaNavalGrafico
     public class Casilla : Button
     {
 
-
         private int _fila;
         private int _columna;
+        private Tablero _tablero;
 
 
-        public Casilla(int fila, int columna)
+        public Casilla(int fila, int columna, Tablero tablero)
         {
             this._fila = fila;
             this._columna = columna;
+            this._tablero = tablero;
 
             this.Height = 40;
             this.Width = 40;
             this.Margin = new Thickness(2);
-            this.Background = Brushes.LightBlue;    //Se emplea para saber el tipo de dato guardado
+            this.Background = Brushes.Gray;    //Se emplea para saber el tipo de dato guardado
         }
 
         
@@ -41,6 +42,11 @@ namespace batallaNavalGrafico
             set => _columna = value;
         }
 
+        public Tablero tablero
+        {
+            get => _tablero;
+            set => _tablero = value;
+        }
 
     }
 }

@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:batallaNavalGrafico"
         mc:Ignorable="d"
-        Title="Window1" Height="650" Width="800">
+        Title="Colocación" Height="650" Width="800">
 
     <Window.Resources>
         <DataTemplate x:Key="DataTemplate_Level2">
-            <Button Content="{Binding}" Margin="4,4,4,4"/>
+            <Button/>
         </DataTemplate>
 
         <DataTemplate x:Key="DataTemplate_Level1">
@@ -34,17 +34,15 @@
             <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Label Grid.Row="0" Grid.Column="0">
-            Tablero Jugador A
-        </Label>
-        <Label Grid.Row="0" Grid.Column="1">
+        <Label Name="tituloVentana" Grid.Row="0" Grid.Column="0" FontSize="32"/>
+        <Label Grid.Row="0" Grid.Column="1" FontSize="24">
             Barcos Disponibles
         </Label>
 
 
         <ItemsControl x:Name="lst" ItemTemplate="{DynamicResource DataTemplate_Level1}" Grid.Column="0" Grid.Row="1" Margin="20"/>
 
-        <ListBox Name="listBox1" Grid.Column="1" Grid.Row="1" Width="auto" Height="auto" Margin="5"></ListBox>
+        <ListBox Name="listBox1" Grid.Column="1" Grid.Row="1" Width="auto" Height="auto" Margin="5" HorizontalContentAlignment="Center"></ListBox>
 
 
 

@@ -11,7 +11,7 @@ namespace batallaNavalGrafico
 
         public enum Tipo
         {
-            PORTAAVIONES,
+            PORTAVIONES,
             SUBMARINO,
             ACORAZADO,
             DESTRUCTOR,
@@ -28,7 +28,7 @@ namespace batallaNavalGrafico
 
             switch (tipo)
             {
-                case Tipo.PORTAAVIONES:
+                case Tipo.PORTAVIONES:
                     _espacio = 4;
                     break;
                 case Tipo.SUBMARINO:
@@ -66,8 +66,8 @@ namespace batallaNavalGrafico
 
             switch (this._tipo)
             {
-                case Tipo.PORTAAVIONES:
-                    cadena = "Portaaviones";
+                case Tipo.PORTAVIONES:
+                    cadena = "Portaviones";
                     break;
                 case Tipo.SUBMARINO:
                     cadena = "Submarino";
@@ -85,38 +85,7 @@ namespace batallaNavalGrafico
             return cadena + "(" + _espacio + ")";
         }
 
-        public string datos
-        {
-            get
-            {
-                String cadena = "";
-
-                switch (this._tipo)
-                {
-                    case Tipo.PORTAAVIONES:
-                        cadena = "Portaaviones";
-                        break;
-                    case Tipo.SUBMARINO:
-                        cadena = "Submarino";
-                        break;
-                    case Tipo.ACORAZADO:
-                        cadena = "Acorazado";
-                        break;
-                    case Tipo.DESTRUCTOR:
-                        cadena = "Destructor";
-                        break;
-                    case Tipo.FRAGATA:
-                        cadena = "Fragata";
-                        break;
-                }
-                return cadena + "(" + _espacio + ")";
-            }
-            set
-            {
-
-            }
-            
-        }
+        
 
     }
 }
